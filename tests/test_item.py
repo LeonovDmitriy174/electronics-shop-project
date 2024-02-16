@@ -38,3 +38,7 @@ item1 = Item('Milk', 100, 100)
 def test_repr_and_str():
     assert repr(item1) == "Item('Milk', 100, 100)"
     assert str(item1) == "Milk"
+
+
+def test_add():
+    assert item + item1 == 200
