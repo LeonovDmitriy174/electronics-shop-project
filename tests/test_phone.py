@@ -24,4 +24,4 @@ def test_number_of_sim():
 
 
 def test_repr():
-    assert repr(phone1) == "Phone('Iphone 15', 120000, 15, 2)"
+    assert repr(phone1) == "Phone('Iphone 15', 120000, 15, 3)"
