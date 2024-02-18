@@ -1,5 +1,8 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
+import pytest
+import os
 from src.item import Item
+from src.item import InstantiateCSVError
 
 item = Item('Milk', 100, 100)
 
@@ -28,8 +31,14 @@ def test_string_to_number():
 
 
 def test_instantiate_from_csv():
-    item.instantiate_from_csv('test.csv')
-    assert len(item.all) == 1
+    item.instantiate_from_csv(os.path.join('..', 'tests', 'test.csv'))
+    assert len(item.all) == 3
+
+    with pytest.raises(InstantiateCSVError, match="Файл items.csv поврежден"):
+        item.instantiate_from_csv(os.path.join('..', 'tests', 'item_defect.csv'))
+
+    with pytest.raises(FileNotFoundError, match='Отсутствует файл items.csv'):
+        item.instantiate_from_csv('')
 
 
 item1 = Item('Milk', 100, 100)
